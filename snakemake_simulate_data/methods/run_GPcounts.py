@@ -54,7 +54,7 @@ def main():
     for i in range(0, len(Y.columns)):
         model=smf.glm(formula = "Y.iloc[:, i]~0+spatial_locations['total_counts']", 
                       data=Y, 
-                      family=sm.families.NegativeBinomial(sm.families.links.log())).fit()
+                      family=sm.families.NegativeBinomial(sm.families.links.identity())).fit()
         res = model.params[0]*spatial_locations['total_counts']
         scales.append(res)
 
